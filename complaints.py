@@ -30,8 +30,7 @@ class Database:
             complaint_description TEXT NOT NULL,
             register_datetime DATETIME DEFAULT CURRENT_TIMESTAMP,
             status INTEGER DEFAULT 0
-            );
-            """)
+            );""")
 
     def add_complaint(self, first_name, last_name, complaint_title, complaint_description):
         """Add complaint (requires first name, last_name, complaint title, complaint description)"""
