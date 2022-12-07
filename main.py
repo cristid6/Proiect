@@ -1,5 +1,4 @@
-"""
-Un client are nevoie de un soft pentru a gestiona mai usor reclamatiile clientilor.
+"""Un client are nevoie de un soft pentru a gestiona mai usor reclamatiile clientilor.
 Va trebuie sa implementezi un caiet de reclamatii digital.
 
 Acest caiet are urmatoarele functionalitati:
@@ -11,8 +10,7 @@ Acest caiet are urmatoarele functionalitati:
 NOTE:
 1. fiecare reclamatie, pe langa reclamatia in sine, trebuie sa retina data la care a fost
 creata si numele reclamatului.
-2. fiecare reclamatie va primi un ID unic pentru a fi identificata.
-"""
+2. fiecare reclamatie va primi un ID unic pentru a fi identificata."""
 
 from complaints import Database
 
@@ -22,11 +20,11 @@ print("""COMPLAINTS DATABASE
 Please use the following commmands:
 
 add_complaint - use this command for adding a complaint (required first name, last name, title and description
-select_complaint - use this command for searching a complaint by id (requires complaint id)
+select_complaint - use this command for searching a complaint by id_reg (requires complaint id_reg)
 select_all - use this command for displaying all complaints
 select_0 - use this command for displaying unresolved complaints (0=unresolved)
 select_1 - use this command for displaying resolved complaints (1=resolved)
-modify_status - use this command for changing complaint status (requires complaint id)
+modify_status - use this command for changing complaint status (requires complaint id_reg)
 help - use this command for displaying all commands
 exit - use this command for exit software.
 """)
@@ -42,9 +40,9 @@ while True:
     elif command == 'select_complaint':
         while True:
             try:
-                id = int(input("Enter id (integer number):"))
-                if id <= db.get_max_id():
-                    db.select_complaint(id)
+                id_reg = int(input("Enter id (integer number):"))
+                if id_reg <= db.get_max_id():
+                    db.select_complaint(id_reg)
                     break
                 else:
                     print("ID doesn't exist!")
@@ -61,13 +59,13 @@ while True:
             if status is not None:
                 break
             try:
-                id = int(input("Enter id (integer number):"))
-                if id <= db.get_max_id():
+                id_reg = int(input("Enter id_reg (integer number):"))
+                if id_reg <= db.get_max_id():
                     while True:
                         try:
                             status = int(input("Enter status  (0 or 1):"))
                             if status in [0, 1]:
-                                db.modify_status(id, status)
+                                db.modify_status(id_reg, status)
                                 break
                             else:
                                 print("Status must be 0 or 1!")
