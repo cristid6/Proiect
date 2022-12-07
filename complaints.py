@@ -35,7 +35,8 @@ class Database:
 
     def add_complaint(self, first_name, last_name, complaint_title, complaint_description):
         """Add complaint (requires first name, last_name, complaint title, complaint description)"""
-        self.cur.execute("""INSERT INTO complaints(first_name, last_name, complaint_title, complaint_description) VALUES (?, ?, ?, ?);""", (first_name, last_name, complaint_title, complaint_description))
+        self.cur.execute("""INSERT INTO complaints(first_name, last_name, complaint_title, complaint_description) VALUES (?, ?, ?, ?);""",
+                         (first_name, last_name, complaint_title, complaint_description))
         self.connection.commit()
 
     def select_complaint(self, id_reg):
