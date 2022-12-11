@@ -20,11 +20,11 @@ print("""COMPLAINTS DATABASE
 Please use the following commmands:
 
 add_complaint - use this command for adding a complaint (required first name, last name, title and description
-select_complaint - use this command for searching a complaint by id_reg (requires complaint id_reg)
+select_complaint - use this command for searching a complaint by ID (requires complaint ID)
 select_all - use this command for displaying all complaints
 select_0 - use this command for displaying unresolved complaints (0=unresolved)
 select_1 - use this command for displaying resolved complaints (1=resolved)
-modify_status - use this command for changing complaint status (requires complaint id_reg)
+modify_status - use this command for changing complaint status (requires complaint ID)
 help - use this command for displaying all commands
 exit - use this command for exit software.
 """)
@@ -40,7 +40,7 @@ while True:
     elif command == 'select_complaint':
         while True:
             try:
-                id_reg = int(input("Enter id (integer number):"))
+                id_reg = int(input("Enter ID (integer number):"))
                 if id_reg <= db.get_max_id():
                     db.select_complaint(id_reg)
                     break
@@ -59,11 +59,11 @@ while True:
             if status is not None:
                 break
             try:
-                id_reg = int(input("Enter id_reg (integer number):"))
+                id_reg = int(input("Enter ID (integer number):"))
                 if id_reg <= db.get_max_id():
                     while True:
                         try:
-                            status = int(input("Enter status  (0 or 1):"))
+                            status = int(input("Enter status (0 or 1):"))
                             if status in [0, 1]:
                                 db.modify_status(id_reg, status)
                                 break

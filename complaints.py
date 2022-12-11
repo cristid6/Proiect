@@ -39,7 +39,7 @@ class Database:
         self.connection.commit()
 
     def select_complaint(self, id_reg):
-        """Select complaint by id_reg (requires id_reg)"""
+        """Select complaint by ID (requires ID)"""
         select = self.cur.execute("""SELECT * FROM complaints WHERE id_reg=?;""", (id_reg,))
         print(select.fetchall())
 
@@ -49,22 +49,22 @@ class Database:
         print(select.fetchall())
 
     def select_0(self):
-        """Select all complaints where id_reg is unresolved"""
+        """Select all complaints where ID is unresolved"""
         select = self.cur.execute("""SELECT * FROM complaints WHERE status=0;""")
         print(select.fetchall())
 
     def select_1(self):
-        """Select all complaints where id_reg is resolved"""
+        """Select all complaints where ID is resolved"""
         select = self.cur.execute("""SELECT * FROM complaints WHERE status=1;""")
         print(select.fetchall())
 
     def modify_status(self, id_reg, status):
-        """Update complaint status by id_reg (requires id)"""
+        """Update complaint status by ID (requires ID)"""
         self.cur.execute("""UPDATE complaints SET status=? WHERE id_reg=?;""", (status, id_reg))
         self.connection.commit()
         print(f"Complaint with id {id_reg} updated with status {status}.")
 
     def get_max_id(self):
-        """Get max id_reg from complaints"""
+        """Get max ID from complaints"""
         max_id = self.cur.execute("""SELECT max(id_reg) FROM complaints""")
         return max_id.fetchall()[0][0]
