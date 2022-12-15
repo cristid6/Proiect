@@ -16,7 +16,7 @@ import sqlite3
 
 
 class Database:
-    """Connection with complaints database and some methods for adding, selecting and updating info."""
+    """Connection with complaints database and methods for adding, selecting and updating info."""
 
     def __init__(self):
         self.connection = sqlite3.connect("complaints_database.db")
@@ -26,16 +26,16 @@ class Database:
             id_reg INTEGER PRIMARY KEY AUTOINCREMENT,
             first_name VARCHAR(255) NOT NULL,
             last_name VARCHAR(255) NOT NULL,
-            complaint_title TEXT NOT NULL,
-            complaint_description TEXT NOT NULL,
+            title TEXT NOT NULL,
+            description TEXT NOT NULL,
             register_datetime DATETIME DEFAULT CURRENT_TIMESTAMP,
             status INTEGER DEFAULT 0
             );""")
 
-    def add_complaint(self, first_name, last_name, complaint_title, complaint_description):
-        """Add complaint (requires first name, last_name, complaint title, complaint description)"""
-        self.cur.execute("""INSERT INTO complaints(first_name, last_name, complaint_title, complaint_description) VALUES (?, ?, ?, ?);""",
-                         (first_name, last_name, complaint_title, complaint_description))
+    def add_complaint(self, first_name, last_name, title, description):
+        """Add complaint (requires first name, last_name, title, description)"""
+        self.cur.execute("""INSERT INTO complaints(first_name, last_name, title, description)
+                        VALUES (?, ?, ?, ?);""", (first_name, last_name, title, description))
         self.connection.commit()
 
     def select_complaint(self, id_reg):
